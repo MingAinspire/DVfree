@@ -4,6 +4,16 @@ import LandingPage from './components/LandingPage';
 import FormProcess from './components/FormProcess';
 import PreparationSteps from './components/PreparationSteps';
 import CourtInfo from './components/CourtInfo';
+import DV109Form from './components/DV109Form';
+import DV110Form from './components/DV110Form';
+import CLETS001Form from './components/CLETS001Form';
+import DV100Section2 from './components/DV100Section2';
+import DV100Section3 from './components/DV100Section3';
+import DV100Section4 from './components/DV100Section4';
+import DV100Section5 from './components/DV100Section5';
+import DV100Section6 from './components/DV100Section6';
+import DV100Section7 from './components/DV100Section7';
+import DV100Section8 from './components/DV100Section8';
 import { Shield } from 'lucide-react';
 
 function App() {
@@ -22,6 +32,16 @@ function App() {
             <Route path="/form" element={<FormProcess />} />
             <Route path="/preparation" element={<PreparationSteps />} />
             <Route path="/court-info" element={<CourtInfo />} />
+            <Route path="/dv109" element={<DV109Form />} />
+            <Route path="/dv110" element={<DV110Form />} />
+            <Route path="/clets001" element={<CLETS001Form />} />
+            <Route path="/dv100-section2" element={<DV100Section2 />} />
+            <Route path="/dv100-section3" element={<DV100Section3 />} />
+            <Route path="/dv100-section4" element={<DV100Section4 />} />
+            <Route path="/dv100-section5" element={<DV100Section5 />} />
+            <Route path="/dv100-section6" element={<DV100Section6 />} />
+            <Route path="/dv100-section7" element={<DV100Section7 />} />
+            <Route path="/dv100-section8" element={<DV100Section8 />} />
           </Routes>
         </main>
         <footer className="bg-gray-200 text-center py-4 mt-8 flex flex-col items-center space-y-2">

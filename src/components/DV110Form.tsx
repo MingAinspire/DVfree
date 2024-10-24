@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-interface DV109FormData {
+interface DV110FormData {
   caseNumber?: string;
   fullName?: string;
   address?: string;
@@ -9,10 +9,11 @@ interface DV109FormData {
   lawyerName?: string;
   lawyerBarNumber?: string;
   lawyerFirmName?: string;
+  restrainedPersonName?: string;
 }
 
-const DV109Form: React.FC = () => {
-  const [formData, setFormData] = useState<DV109FormData>({});
+const DV110Form: React.FC = () => {
+  const [formData, setFormData] = useState<DV110FormData>({});
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -27,7 +28,8 @@ Telephone: ${formData.telephone || ''}
 Email Address: ${formData.emailAddress || ''}
 Lawyer Name: ${formData.lawyerName || ''}
 State Bar No.: ${formData.lawyerBarNumber || ''}
-Firm Name: ${formData.lawyerFirmName || ''}`;
+Firm Name: ${formData.lawyerFirmName || ''}
+Restrained Person Name: ${formData.restrainedPersonName || ''}`;
     navigator.clipboard.writeText(dataToCopy).then(() => {
       alert('Data copied to clipboard!');
     });
@@ -35,7 +37,7 @@ Firm Name: ${formData.lawyerFirmName || ''}`;
 
   return (
     <div>
-      <h2>DV-109 (Sections 1-2)</h2>
+      <h2>DV-110 (Sections 1-3)</h2>
       <div className="space-y-4">
         <div>
           <label htmlFor="caseNumber" className="block text-sm font-medium mb-1">Case Number:</label>
@@ -69,10 +71,14 @@ Firm Name: ${formData.lawyerFirmName || ''}`;
           <label htmlFor="lawyerFirmName" className="block text-sm font-medium mb-1">Firm Name:</label>
           <input type="text" id="lawyerFirmName" name="lawyerFirmName" onChange={handleInputChange} value={formData.lawyerFirmName || ''} />
         </div>
+        <div>
+          <label htmlFor="restrainedPersonName" className="block text-sm font-medium mb-1">Restrained Person Name:</label>
+          <input type="text" id="restrainedPersonName" name="restrainedPersonName" onChange={handleInputChange} value={formData.restrainedPersonName || ''} />
+        </div>
         <button onClick={handleCopy}>Copy Data to Clipboard</button>
       </div>
     </div>
   );
 };
 
-export default DV109Form;
+export default DV110Form;

@@ -1,17 +1,62 @@
 import React, { useState } from 'react';
 import { Heart, HelpCircle, Lock, Mail, FileText, ChevronRight, ChevronLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 
 const FormProcess: React.FC = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [formData, setFormData] = useState<Record<string, any>>({});
   const [showHelp, setShowHelp] = useState<string | null>(null);
   const [wantsEmailCopy, setWantsEmailCopy] = useState(false);
   const [wantsUpdates, setWantsUpdates] = useState(false);
   const [email, setEmail] = useState('');
+  const [currentSection, setCurrentSection] = useState<number>(1);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleContinueClick = () => {
+    try {
+      console.log('"Save & Continue" button clicked!');
+      if (currentSection === 1 &amp;&amp; formData.fullName &amp;&amp; formData.restrained_person) {
+        navigate('/dv100-section2');
+        setCurrentSection(2);
+      } else if (currentSection === 2) {
+        navigate('/dv100-section3');
+        setCurrentSection(3);
+      } else if (currentSection === 3) {
+        navigate('/dv100-section4');
+        setCurrentSection(4);
+      } else if (currentSection === 4) {
+        navigate('/dv100-section5');
+        setCurrentSection(5);
+      } else if (currentSection === 5) {
+        navigate('/dv100-section6');
+        setCurrentSection(6);
+      } else if (currentSection === 6) {
+        navigate('/dv100-section7');
+        setCurrentSection(7);
+      } else if (currentSection === 7) {
+        navigate('/dv100-section8');
+        setCurrentSection(8);
+      } else {
+        console.log('Form complete!');
+      }
+    } catch (error) {
+      console.error('Error in handleContinueClick:', error);
+    }
+  };
+
+  const sectionStatus = (section: number): string => {
+    if (currentSection > section) {
+      return 'bg-green-500';
+    } else if (currentSection === section) {
+      return 'bg-yellow-500';
+    } else {
+      return 'bg-gray-300';
+    }
   };
 
   return (
@@ -133,7 +178,7 @@ const FormProcess: React.FC = () => {
                   </div>
                 </div>
 
-                {(wantsEmailCopy || wantsUpdates) && (
+                {(wantsEmailCopy || wantsUpdates) &amp;&amp; (
                   <input
                     type="email"
                     placeholder="Your email address"
@@ -160,18 +205,15 @@ const FormProcess: React.FC = () => {
 
             {/* Navigation */}
             <div className="mt-8 flex justify-between">
-              <Link 
+              <Link
                 to="/court-info"
                 className="flex items-center px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
               >
                 <ChevronLeft className="mr-2" /> Back
               </Link>
-              <button 
-                onClick={() => {
-                  // Save form data logic here
-                  // Then navigate to next step
-                }}
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-2"
+              <button
+                onClick={handleContinueClick}
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-2 z-10"
               >
                 Save & Continue
                 <ChevronRight size={18} />
@@ -185,24 +227,36 @@ const FormProcess: React.FC = () => {
           <h3 className="font-medium text-lg mb-4">Your Progress</h3>
           <ul className="space-y-4">
             <li className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              <div className={sectionStatus(1)} style={{width: '20px', height: '20px', borderRadius: '50%'}}></div>
               <span className="font-medium">Basic Information</span>
             </li>
-            <li className="flex items-center gap-2 text-gray-500">
-              <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
-              <span>DV-109 Details</span>
+            <li className="flex items-center gap-2">
+              <div className={sectionStatus(2)} style={{width: '20px', height: '20px', borderRadius: '50%'}}></div>
+              <span>DV-100 Section 2</span>
             </li>
-            <li className="flex items-center gap-2 text-gray-500">
-              <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
-              <span>DV-110 Details</span>
+            <li className="flex items-center gap-2">
+              <div className={sectionStatus(3)} style={{width: '20px', height: '20px', borderRadius: '50%'}}></div>
+              <span>DV-100 Section 3</span>
             </li>
-            <li className="flex items-center gap-2 text-gray-500">
-              <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
-              <span>CLETS-001 Details</span>
+            <li className="flex items-center gap-2">
+              <div className={sectionStatus(4)} style={{width: '20px', height: '20px', borderRadius: '50%'}}></div>
+              <span>DV-100 Section 4</span>
             </li>
-            <li className="flex items-center gap-2 text-gray-500">
-              <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
-              <span>Review & Download</span>
+            <li className="flex items-center gap-2">
+              <div className={sectionStatus(5)} style={{width: '20px', height: '20px', borderRadius: '50%'}}></div>
+              <span>DV-100 Section 5</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <div className={sectionStatus(6)} style={{width: '20px', height: '20px', borderRadius: '50%'}}></div>
+              <span>DV-100 Section 6</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <div className={sectionStatus(7)} style={{width: '20px', height: '20px', borderRadius: '50%'}}></div>
+              <span>DV-100 Section 7</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <div className={sectionStatus(8)} style={{width: '20px', height: '20px', borderRadius: '50%'}}></div>
+              <span>DV-100 Section 8</span>
             </li>
           </ul>
         </div>
