@@ -1,132 +1,76 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-interface FormData {
-  applicantAge: string;
-  applicantAddress: string;
-  relationship: string;
-  restrainedPersonName: string;
-  restrainedPersonAge: string;
-  restrainedPersonAddress: string;
-  livesTogether: boolean;
+interface DV109FormData {
+  caseNumber?: string;
+  fullName?: string;
+  address?: string;
+  telephone?: string;
+  emailAddress?: string;
+  lawyerName?: string;
+  lawyerBarNumber?: string;
+  lawyerFirmName?: string;
 }
 
 const DV109Form: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    applicantAge: '',
-    applicantAddress: '',
-    relationship: '',
-    restrainedPersonName: '',
-    restrainedPersonAge: '',
-    restrainedPersonAddress: '',
-    livesTogether: false,
-  });
+  const [formData, setFormData] = useState<DV109FormData>({});
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const target = e.target;
-    const name = target.name;
-    let value;
-
-    if (target instanceof HTMLInputElement) {
-      value = target.type === 'checkbox' ? target.checked : target.value;
-    } else if (target instanceof HTMLTextAreaElement) {
-      value = target.value;
-    } else if (target instanceof HTMLSelectElement) {
-      value = target.value;
-    } else {
-      throw new Error('Unexpected target type');
-    }
-
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: Handle form submission (e.g., API call, data storage)
-    console.log('Form data submitted:', formData);
+  const handleCopy = () => {
+    const dataToCopy = `Case Number: ${formData.caseNumber || ''}
+Full Name: ${formData.fullName || ''}
+Address: ${formData.address || ''}
+Telephone: ${formData.telephone || ''}
+Email Address: ${formData.emailAddress || ''}
+Lawyer Name: ${formData.lawyerName || ''}
+State Bar No.: ${formData.lawyerBarNumber || ''}
+Firm Name: ${formData.lawyerFirmName || ''}`;
+    navigator.clipboard.writeText(dataToCopy).then(() => {
+      alert('Data copied to clipboard!');
+    });
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6">
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label htmlFor="applicantAge">Applicant's Age:</label>
-          <input
-            type="number"
-            id="applicantAge"
-            name="applicantAge"
-            value={formData.applicantAge}
-            onChange={handleChange}
-            required
-          />
+    <div>
+      <h2>DV-109 (Sections 1-2)</h2>
+      <div className="space-y-4">
+        <div>
+          <label htmlFor="caseNumber" className="block text-sm font-medium mb-1">Case Number:</label>
+          <input type="text" id="caseNumber" name="caseNumber" onChange={handleInputChange} value={formData.caseNumber || ''} />
         </div>
-        <div className="mb-4">
-          <label htmlFor="applicantAddress">Applicant's Address:</label>
-          <textarea
-            id="applicantAddress"
-            name="applicantAddress"
-            value={formData.applicantAddress}
-            onChange={handleChange}
-            required
-          />
+        <div>
+          <label htmlFor="fullName" className="block text-sm font-medium mb-1">Full Name:</label>
+          <input type="text" id="fullName" name="fullName" onChange={handleInputChange} value={formData.fullName || ''} />
         </div>
-        <div className="mb-4">
-          <label htmlFor="relationship">Relationship to Restrained Person:</label>
-          <input
-            type="text"
-            id="relationship"
-            name="relationship"
-            value={formData.relationship}
-            onChange={handleChange}
-            required
-          />
+        <div>
+          <label htmlFor="address" className="block text-sm font-medium mb-1">Address:</label>
+          <textarea id="address" name="address" onChange={handleInputChange} value={formData.address || ''} />
         </div>
-        <div className="mb-4">
-          <label htmlFor="restrainedPersonName">Restrained Person's Name:</label>
-          <input
-            type="text"
-            id="restrainedPersonName"
-            name="restrainedPersonName"
-            value={formData.restrainedPersonName}
-            onChange={handleChange}
-            required
-          />
+        <div>
+          <label htmlFor="telephone" className="block text-sm font-medium mb-1">Telephone:</label>
+          <input type="tel" id="telephone" name="telephone" onChange={handleInputChange} value={formData.telephone || ''} />
         </div>
-        <div className="mb-4">
-          <label htmlFor="restrainedPersonAge">Restrained Person's Age:</label>
-          <input
-            type="number"
-            id="restrainedPersonAge"
-            name="restrainedPersonAge"
-            value={formData.restrainedPersonAge}
-            onChange={handleChange}
-          />
+        <div>
+          <label htmlFor="emailAddress" className="block text-sm font-medium mb-1">Email Address:</label>
+          <input type="email" id="emailAddress" name="emailAddress" onChange={handleInputChange} value={formData.emailAddress || ''} />
         </div>
-        <div className="mb-4">
-          <label htmlFor="restrainedPersonAddress">Restrained Person's Address:</label>
-          <textarea
-            id="restrainedPersonAddress"
-            name="restrainedPersonAddress"
-            value={formData.restrainedPersonAddress}
-            onChange={handleChange}
-          />
+        <div>
+          <label htmlFor="lawyerName" className="block text-sm font-medium mb-1">Lawyer Name:</label>
+          <input type="text" id="lawyerName" name="lawyerName" onChange={handleInputChange} value={formData.lawyerName || ''} />
         </div>
-        <div className="mb-4">
-          <label htmlFor="livesTogether">Lives Together:</label>
-          <input
-            type="checkbox"
-            id="livesTogether"
-            name="livesTogether"
-            checked={formData.livesTogether}
-            onChange={handleChange}
-          />
+        <div>
+          <label htmlFor="lawyerBarNumber" className="block text-sm font-medium mb-1">State Bar No.:</label>
+          <input type="text" id="lawyerBarNumber" name="lawyerBarNumber" onChange={handleInputChange} value={formData.lawyerBarNumber || ''} />
         </div>
-        <div className="flex justify-between">
-          <Link to="/form" className="px-4 py-2 bg-gray-200 rounded">Back</Link>
-          <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded">Next</button>
+        <div>
+          <label htmlFor="lawyerFirmName" className="block text-sm font-medium mb-1">Firm Name:</label>
+          <input type="text" id="lawyerFirmName" name="lawyerFirmName" onChange={handleInputChange} value={formData.lawyerFirmName || ''} />
         </div>
-      </form>
+        <button onClick={handleCopy}>Copy Data to Clipboard</button>
+      </div>
     </div>
   );
 };
