@@ -116,10 +116,10 @@ const CourtInfo: React.FC = () => {
             <ArrowLeft className="mr-2" /> Back to Preparation Steps
           </Link>
           <Link 
-            to="/" 
+            to="/form" 
             className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"
           >
-            Continue <Check size={18} />
+            Continue to Forms <Check size={18} />
           </Link>
         </div>
       </div>

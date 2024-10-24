@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Heart, HelpCircle, Lock, Mail, FileText, ChevronRight } from 'lucide-react';
+import { Heart, HelpCircle, Lock, Mail, FileText, ChevronRight, ChevronLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const FormProcess: React.FC = () => {
   const [formData, setFormData] = useState<Record<string, any>>({});
@@ -159,11 +160,20 @@ const FormProcess: React.FC = () => {
 
             {/* Navigation */}
             <div className="mt-8 flex justify-between">
-              <button className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition">
-                Save & Take a Break
-              </button>
-              <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-2">
-                Continue
+              <Link 
+                to="/court-info"
+                className="flex items-center px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
+              >
+                <ChevronLeft className="mr-2" /> Back
+              </Link>
+              <button 
+                onClick={() => {
+                  // Save form data logic here
+                  // Then navigate to next step
+                }}
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-2"
+              >
+                Save & Continue
                 <ChevronRight size={18} />
               </button>
             </div>

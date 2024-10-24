@@ -138,7 +138,7 @@ const LandingPage: React.FC = () => {
 
       <div className="text-center">
         <Link 
-          to="/form" 
+          to="/preparation" 
           className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-700 transition duration-300"
         >
           Start Now
