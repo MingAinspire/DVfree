@@ -22,3 +22,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# PDF and form files
+*.pdf
+*.fdf
+*_fields.txt
+original_form_info.txt
+*-filled*.pdf
+*-test*.pdf
+.~lock.*#
