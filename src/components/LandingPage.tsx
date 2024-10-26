@@ -57,6 +57,9 @@ const LandingPage: React.FC = () => {
         <Link to="/form" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
           Start DVTRO Form Process
         </Link>
+        <Link to="/dv100" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 ml-4">
+          Start DV100 Form Process
+        </Link>
       </div>
     </div>
   );

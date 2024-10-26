@@ -3,7 +3,78 @@ import { ArrowLeft, ArrowRight, AlertCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import FormSubmission from './FormSubmission';
 
-// ... (keep the existing questions array)
+const questions = [
+  {
+    question: 'What is your name?',
+    type: 'text',
+    helpText: 'Please enter your full legal name.',
+  },
+  {
+    question: 'What is your address?',
+    type: 'textarea',
+    helpText: 'Please enter your current residential address.',
+  },
+  {
+    question: 'What is your phone number?',
+    type: 'text',
+    helpText: 'Please enter a valid phone number where you can be reached.',
+  },
+  {
+    question: 'Please describe the incident.',
+    type: 'textarea',
+    helpText: 'Provide a detailed description of the incident.',
+  },
+  {
+    question: 'Do you have any evidence to support your claim?',
+    type: 'textarea',
+    helpText: 'List any evidence you have, such as photos, videos, or witness statements.',
+  },
+  {
+    question: 'What is the name of the person you are filing against?',
+    type: 'text',
+    helpText: 'Please enter the full legal name of the person you are filing against.',
+  },
+  {
+    question: 'What is the relationship between you and the person you are filing against?',
+    type: 'textarea',
+    helpText: 'Describe your relationship with the person you are filing against.',
+  },
+  {
+    question: 'What is the date of the incident?',
+    type: 'text',
+    helpText: 'Please enter the date when the incident occurred.',
+  },
+  {
+    question: 'What is the location of the incident?',
+    type: 'textarea',
+    helpText: 'Please provide the location where the incident took place.',
+  },
+  {
+    question: 'What actions do you want the court to take?',
+    type: 'textarea',
+    helpText: 'Describe the actions you want the court to take, such as issuing a restraining order.',
+  },
+  {
+    question: 'Do you have any additional information to provide?',
+    type: 'textarea',
+    helpText: 'Provide any additional information that may be relevant to your case.',
+  },
+  {
+    question: 'Do you need any special accommodations?',
+    type: 'textarea',
+    helpText: 'List any special accommodations you may need, such as an interpreter or wheelchair access.',
+  },
+  {
+    question: 'Please review your information before submitting.',
+    type: 'textarea',
+    helpText: 'Review all the information you have provided to ensure it is accurate and complete.',
+  },
+  {
+    question: 'DV100 Form: What is your date of birth?',
+    type: 'text',
+    helpText: 'Please enter your date of birth as it appears on your ID.',
+  },
+];
 
 const FormProcess: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
