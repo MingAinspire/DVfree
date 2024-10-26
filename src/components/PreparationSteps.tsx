@@ -3,14 +3,41 @@ import { Link } from 'react-router-dom';
 import { ChevronRight, ChevronLeft, Download, CheckCircle } from 'lucide-react';
 import CountyInfo from './CountyInfo';
 
-// ... (keep existing preparationSteps array)
+const preparationSteps = [
+  {
+    title: 'Gather Your Information',
+    content: 'Collect all necessary documents and information related to your case.',
+  },
+  {
+    title: 'Fill Out the DV100 Form',
+    content: 'Complete the DV100 form with accurate and detailed information.',
+  },
+  {
+    title: 'Review and Submit',
+    content: 'Review your completed form and submit it to the court.',
+  },
+  {
+    title: 'DV100 Form: Provide Additional Information',
+    content: 'Provide any additional information required for the DV100 form.',
+  },
+];
 
 const PreparationSteps: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [zipCode, setZipCode] = useState('');
   const [showCountyInfo, setShowCountyInfo] = useState(false);
 
-  // ... (keep existing handleNext and handlePrevious functions)
+  const handleNext = () => {
+    if (currentStep < preparationSteps.length - 1) {
+      setCurrentStep(prev => prev + 1);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentStep > 0) {
+      setCurrentStep(prev => prev - 1);
+    }
+  };
 
   const handleZipCodeSubmit = (e: React.FormEvent) => {
     e.preventDefault();
